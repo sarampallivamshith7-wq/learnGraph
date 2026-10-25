@@ -2163,7 +2163,7 @@ function App() {
         </nav>
         <div className="sidebar-note">
           <span className="status-dot" />
-          <span>Fictional demo workspace</span>
+          <span>Learn.Build.Grow 🚀 </span>
         </div>
       </aside>
 
