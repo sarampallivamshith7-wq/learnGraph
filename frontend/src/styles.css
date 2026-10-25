@@ -451,3 +451,92 @@ footer { text-align: center; color: #a0a4b1; font-size: 10px; padding: 22px 0 0;
   .impact-prerequisite > span { grid-column: 1 / -1; justify-self: start; }
   .impact-bar-row { grid-template-columns: 66px minmax(35px, 1fr) 70px; }
 }
+
+.metric-card,
+.panel,
+.recommendation-card,
+.gap-card,
+.support-summary,
+.status-card,
+.quiz-result,
+.estimate-note,
+.impact-honesty-note,
+.feature-effect,
+.helper-context,
+.reasoning-chain li,
+.recommended-resources,
+.helper-feedback-grid > div,
+.detail-stats > div,
+.model-metrics > div,
+.faculty-detail-metrics > div {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.metric-card:hover,
+.panel:hover,
+.recommendation-card:hover,
+.gap-card:hover,
+.support-summary:hover,
+.status-card:hover,
+.quiz-result:hover,
+.estimate-note:hover,
+.impact-honesty-note:hover,
+.feature-effect:hover,
+.helper-context:hover,
+.reasoning-chain li:hover,
+.recommended-resources:hover,
+.helper-feedback-grid > div:hover,
+.detail-stats > div:hover,
+.model-metrics > div:hover,
+.faculty-detail-metrics > div:hover {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(32, 38, 59, 0.12);
+}
+
+.recommendation-card.selected:hover {
+  box-shadow: 0 0 0 2px #f2f0ff, 0 6px 16px rgba(32, 38, 59, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-card,
+  .panel,
+  .recommendation-card,
+  .gap-card,
+  .support-summary,
+  .status-card,
+  .quiz-result,
+  .estimate-note,
+  .impact-honesty-note,
+  .feature-effect,
+  .helper-context,
+  .reasoning-chain li,
+  .recommended-resources,
+  .helper-feedback-grid > div,
+  .detail-stats > div,
+  .model-metrics > div,
+  .faculty-detail-metrics > div {
+    transition: none;
+  }
+
+  .metric-card:hover,
+  .panel:hover,
+  .recommendation-card:hover,
+  .gap-card:hover,
+  .support-summary:hover,
+  .status-card:hover,
+  .quiz-result:hover,
+  .estimate-note:hover,
+  .impact-honesty-note:hover,
+  .feature-effect:hover,
+  .helper-context:hover,
+  .reasoning-chain li:hover,
+  .recommended-resources:hover,
+  .helper-feedback-grid > div:hover,
+  .detail-stats > div:hover,
+  .model-metrics > div:hover,
+  .faculty-detail-metrics > div:hover {
+    transform: none;
+  }
+}
