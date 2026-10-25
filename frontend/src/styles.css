@@ -388,6 +388,94 @@ small { font-size: 12px; }
   padding: var(--space-4);
 }
 
+.metric-card--completion {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 80px;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  gap: var(--space-2) 12px;
+}
+
+.completion-card-heading {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.completion-card-heading .metric-icon {
+  width: 28px;
+  height: 28px;
+  margin: 0;
+}
+
+.completion-card-heading .metric-label {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.completion-donut {
+  position: relative;
+  display: grid;
+  width: 80px;
+  height: 80px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  place-items: center;
+  flex: none;
+}
+
+.completion-donut svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.completion-donut-track,
+.completion-donut-value {
+  fill: none;
+  stroke-width: 7;
+}
+
+.completion-donut-track { stroke: #e7e9f0; }
+
+.completion-donut-value {
+  stroke: url(#completion-gradient);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 450ms ease;
+}
+
+.completion-donut-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+.completion-donut-label strong {
+  color: var(--ink);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.completion-donut-label span {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.metric-card--completion > small {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+  margin-top: 0;
+}
+
 .metric-icon {
   display: grid;
   width: 32px;
@@ -812,13 +900,14 @@ small { font-size: 12px; }
 .quiz-mastery-change strong { font-size: 20px; font-weight: 650; }
 .quiz-mastery-change > span { color: var(--violet); }
 .quiz-history { margin-top: var(--space-4); }
-.assessment-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: 12px 0; }
+.assessment-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-2) var(--space-3); padding: 12px 0; }
 .assessment-row > div { min-width: 0; }
 .assessment-row b,
 .assessment-row small { display: block; }
 .assessment-row b { font-size: 13px; }
 .assessment-row small { margin-top: 3px; color: var(--quiet); }
 .assessment-row > strong { flex: none; font-size: 13px; }
+.assessment-row .impact-progress { grid-column: 1 / -1; }
 
 .helper-form label { display: grid; gap: var(--space-1); color: var(--muted); font-size: 13px; font-weight: 600; }
 .helper-form select,
@@ -1069,6 +1158,21 @@ td { padding: 8px 10px; border: 1px solid var(--line); }
 .impact-concept-heading small,
 .impact-student-heading small { margin-top: 3px; color: var(--quiet); font-size: 12px; }
 .impact-concept-heading > strong { flex: none; color: #4940ac; font-size: 14px; }
+.impact-progress {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8e9f1;
+}
+.impact-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--indigo), var(--violet));
+  transition: width 350ms ease;
+}
+.impact-concept .impact-progress { margin-top: var(--space-2); }
 .impact-bar-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2); margin-top: var(--space-2); color: var(--muted); font-size: 13px; }
 .impact-bar-row strong { color: var(--ink); font-size: 13px; font-weight: 600; text-align: right; }
 .impact-evidence { margin: var(--space-2) 0 0; }
@@ -1078,6 +1182,7 @@ td { padding: 8px 10px; border: 1px solid var(--line); }
 .impact-student .text-button { justify-self: start; }
 .impact-quiz,
 .impact-attempt { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); }
+.impact-quiz .impact-progress { grid-column: 1 / -1; }
 .impact-quiz > div:first-child,
 .impact-attempt > div:first-child { min-width: 0; }
 .impact-quiz b,

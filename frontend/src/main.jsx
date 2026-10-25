@@ -416,6 +416,27 @@ function App() {
   const [quizResult, setQuizResult] = React.useState(null);
   const helperRequestId = React.useRef(0);
 
+  const renderImpactProgress = (value, label) => {
+    if (value === null || value === undefined || value === "") return null;
+    const numericValue = Number(value);
+    if (!Number.isFinite(numericValue)) return null;
+    const percentage = Math.min(100, Math.max(0, numericValue));
+
+    return (
+      <div
+        className="impact-progress"
+        role="progressbar"
+        aria-label={label}
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow={percentage}
+        title={`${label}: ${percentage}%`}
+      >
+        <span className="impact-progress-fill" style={{ width: `${percentage}%` }} />
+      </div>
+    );
+  };
+
   React.useEffect(() => {
     fetch("/api/overview")
       .then((response) => {
@@ -746,17 +767,76 @@ function App() {
 
   const renderMetricCards = (items) => (
     <section className="metric-grid" aria-label="Academic snapshot">
-      {items.map((metric) => (
-        <article className="metric-card" key={metric.label}>
-          <span className={`metric-icon ${metric.tone}`}>{metric.icon}</span>
-          <span className="metric-label">{metric.label}</span>
-          <strong>
-            {metric.value}
-            {metric.suffix && <span>{metric.suffix}</span>}
-          </strong>
-          <small className={metric.trend.includes("+") || metric.trend.includes("On track") ? "positive" : ""}>{metric.trend}</small>
-        </article>
-      ))}
+      {items.map((metric) => {
+        const isCompletionMetric = metric.label === "Overall progress";
+        const numericCompletion = Number(metric.value);
+        const completion = Number.isFinite(numericCompletion)
+          ? Math.round(Math.min(100, Math.max(0, numericCompletion)))
+          : 0;
+        const remaining = 100 - completion;
+        const circumference = 2 * Math.PI * 36;
+
+        return (
+          <article className={`metric-card${isCompletionMetric ? " metric-card--completion" : ""}`} key={metric.label}>
+            {isCompletionMetric ? (
+              <>
+                <div className="completion-card-heading">
+                  <span className={`metric-icon ${metric.tone}`}>{metric.icon}</span>
+                  <span className="metric-label">{metric.label}</span>
+                </div>
+                <div
+                  className="completion-donut"
+                  role="img"
+                  aria-label={`${completion}% completed, ${remaining}% remaining`}
+                  title={`${completion}% completed · ${remaining}% remaining`}
+                >
+                  <svg viewBox="0 0 80 80" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="completion-gradient" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="var(--indigo)" />
+                        <stop offset="100%" stopColor="var(--violet)" />
+                      </linearGradient>
+                    </defs>
+                    <circle className="completion-donut-track" cx="40" cy="40" r="36" />
+                    <circle
+                      className="completion-donut-value"
+                      cx="40"
+                      cy="40"
+                      r="36"
+                      transform="rotate(-90 40 40)"
+                      strokeDasharray={circumference}
+                      strokeDashoffset={circumference * (1 - completion / 100)}
+                    />
+                  </svg>
+                  <div className="completion-donut-label">
+                    <strong>{completion}%</strong>
+                    <span>Completed</span>
+                  </div>
+                </div>
+                {metric.trend && (
+                  <small className={metric.trend.includes("+") || metric.trend.includes("On track") ? "positive" : ""}>
+                    {metric.trend}
+                  </small>
+                )}
+              </>
+            ) : (
+              <>
+                <span className={`metric-icon ${metric.tone}`}>{metric.icon}</span>
+                <span className="metric-label">{metric.label}</span>
+                <strong>
+                  {metric.value}
+                  {metric.suffix && <span>{metric.suffix}</span>}
+                </strong>
+                {metric.trend && (
+                  <small className={metric.trend.includes("+") || metric.trend.includes("On track") ? "positive" : ""}>
+                    {metric.trend}
+                  </small>
+                )}
+              </>
+            )}
+          </article>
+        );
+      })}
     </section>
   );
 
@@ -1439,7 +1519,8 @@ function App() {
                 {studentPerformance.quizzes.map((quiz) => (
                   <div className="assessment-row" key={`${quiz.title}-${quiz.date}`}>
                     <div><b>{quiz.title}</b><small>{quiz.date} · {quiz.conceptName}</small></div>
-                    <strong>{quiz.score}%</strong>
+                    <strong>{quiz.score === null || quiz.score === undefined ? "—" : `${quiz.score}%`}</strong>
+                    {renderImpactProgress(quiz.score, `${quiz.title} quiz score`)}
                   </div>
                 ))}
               </div>
@@ -1453,7 +1534,8 @@ function App() {
                 {studentPerformance.assignments.map((assignment) => (
                   <div className="assessment-row" key={`${assignment.title}-${assignment.date}`}>
                     <div><b>{assignment.title}</b><small>{assignment.date} · {assignment.conceptName} · {assignment.status}</small></div>
-                    <strong>{assignment.score}%</strong>
+                    <strong>{assignment.score === null || assignment.score === undefined ? "—" : `${assignment.score}%`}</strong>
+                    {renderImpactProgress(assignment.score, `${assignment.title} assignment score`)}
                   </div>
                 ))}
               </div>
@@ -1542,36 +1624,8 @@ function App() {
           <p className="eyebrow">FACULTY DASHBOARD</p>
           <h2>Class progress and support signals</h2>
         </div>
-        <span className="term-label">Fictional demo cohort</span>
+        {/* <span className="term-label"></span> */}
       </section>
-
-
-      {facultyAnalytics?.model && (
-        <section className="panel model-explainability" aria-labelledby="model-explainability-title">
-          <div className="panel-heading">
-            <div><p className="eyebrow">MODEL EXPLAINABILITY</p><h3 id="model-explainability-title">How the indicators relate to the estimate</h3></div>
-          </div>
-          <p className="panel-copy">
-            {facultyAnalytics.model.explainability} These are model associations, not causes.
-            The synthetic target is defined by combined cutoffs, which a linear model may not reproduce exactly.
-          </p>
-          <div className="feature-effects">
-            {facultyAnalytics.model.featureEffects.map((feature) => (
-              <div className="feature-effect" key={feature.key}>
-                <div>
-                  <b>{feature.label}</b>
-                  <small>Training mean: {feature.trainingMean}{feature.unit === "%" ? "%" : " hours/week"}</small>
-                </div>
-                <strong>β {feature.coefficientPerStandardDeviation > 0 ? "+" : ""}{feature.coefficientPerStandardDeviation.toFixed(3)} / SD</strong>
-                <span>{feature.direction}; association with synthetic support-needed log-odds, holding other indicators fixed.</span>
-              </div>
-            ))}
-          </div>
-          {facultyAnalytics.model.probabilityCalibrationEvaluated === false && (
-            <p className="model-calibration-note">The displayed probabilities are model outputs; calibration was not evaluated.</p>
-          )}
-        </section>
-      )}
 
       <section className="panel faculty-filters" aria-label="Faculty analytics filters">
         <label className="student-select">
@@ -1959,6 +2013,7 @@ function App() {
                         <div><b>{concept.name}</b><small>{concept.subject} · {concept.status}</small></div>
                         <strong>{concept.mastery === null ? "Not assessed" : `${concept.mastery}%`}</strong>
                       </div>
+                      {renderImpactProgress(concept.mastery, `${concept.name} mastery`)}
                     </article>
                   ))}
                 </div>
@@ -1976,7 +2031,8 @@ function App() {
                   {currentStudentPerformance.quizzes.slice(-6).map((quiz) => (
                     <article className="impact-quiz" key={quiz.attemptId || `${quiz.title}-${quiz.date}`}>
                       <div><b>{quiz.title}</b><small>{quiz.date} · {quiz.conceptName}</small></div>
-                      <strong>{quiz.score}%</strong>
+                      <strong>{quiz.score === null || quiz.score === undefined ? "—" : `${quiz.score}%`}</strong>
+                      {renderImpactProgress(quiz.score, `${quiz.title} score`)}
                     </article>
                   ))}
                 </div>
