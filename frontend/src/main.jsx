@@ -1261,6 +1261,35 @@ function App() {
     );
   }
 
+  const graphCenter = { x: 400, y: 220 };
+  const graphNodes = performanceConcepts.map((concept, index) => {
+    const angle = -Math.PI / 2 + (2 * Math.PI * index) / performanceConcepts.length;
+    return {
+      concept,
+      x: performanceConcepts.length === 1 ? graphCenter.x : graphCenter.x + 290 * Math.cos(angle),
+      y: performanceConcepts.length === 1 ? graphCenter.y : graphCenter.y + 155 * Math.sin(angle)
+    };
+  });
+  const graphNodeByName = new Map(
+    graphNodes.map((node) => [node.concept.name.trim().toLowerCase(), node])
+  );
+  const graphEdges = [];
+  const seenGraphEdges = new Set();
+  graphNodes.forEach((node) => {
+    (node.concept.connections || []).forEach((connection) => {
+      const connectedNode = graphNodeByName.get(connection.trim().toLowerCase());
+      if (!connectedNode || connectedNode.concept.id === node.concept.id) return;
+      const edgeKey = [node.concept.id, connectedNode.concept.id].sort().join(":");
+      if (seenGraphEdges.has(edgeKey)) return;
+      seenGraphEdges.add(edgeKey);
+      graphEdges.push({
+        source: node,
+        target: connectedNode,
+        selected: node.concept.id === selectedConcept || connectedNode.concept.id === selectedConcept
+      });
+    });
+  });
+
   const conceptExplorer = (
     <>
       <section className="page-header">
@@ -1273,19 +1302,35 @@ function App() {
 
       <section className="two-column-grid concept-grid">
         <article className="panel concept-panel">
-          {performanceConcepts.map((concept) => (
-            <button
-              className={`concept-button ${selectedConcept === concept.id ? "selected" : ""}`}
-              key={concept.id}
-              onClick={() => chooseConcept(concept.id)}
-            >
-              <div className="concept-button-top">
-                <span>{concept.name}</span>
-                <strong>{concept.mastery}%</strong>
-              </div>
-              <small>{concept.subject}</small>
-            </button>
-          ))}
+          <div className="graph-stage" aria-label="Knowledge graph concept map">
+            <svg className="graph-edges" viewBox="0 0 800 440" aria-hidden="true">
+              {graphEdges.map((edge) => (
+                <line
+                  className={`graph-edge${edge.selected ? " selected" : ""}`}
+                  key={`${edge.source.concept.id}-${edge.target.concept.id}`}
+                  x1={edge.source.x}
+                  y1={edge.source.y}
+                  x2={edge.target.x}
+                  y2={edge.target.y}
+                />
+              ))}
+            </svg>
+            {graphNodes.map(({ concept, x, y }) => (
+              <button
+                className={`concept-button concept-node ${concept.subject.toLowerCase().replace(/[^a-z0-9]+/g, "-")}${selectedConcept === concept.id ? " selected" : ""}`}
+                key={concept.id}
+                style={{ left: `${(x / 800) * 100}%`, top: `${(y / 440) * 100}%` }}
+                onClick={() => chooseConcept(concept.id)}
+                aria-pressed={selectedConcept === concept.id}
+              >
+                <div className="concept-button-top">
+                  <span>{concept.name}</span>
+                  <strong>{concept.mastery}%</strong>
+                </div>
+                <small>{concept.subject}</small>
+              </button>
+            ))}
+          </div>
         </article>
 
         <article className="panel concept-detail">
@@ -1805,7 +1850,7 @@ function App() {
         <div>
           <p className="eyebrow">LEARNING IMPACT · FACULTY VIEW</p>
           <h2>Cohort learning signals</h2>
-          <p className="impact-subtitle">A summary of observed fictional prototype activity—not evidence of learning effectiveness.</p>
+          <p className="impact-subtitle">Great achievements begin with a willingness to learn</p>
         </div>
         <span className="term-label">{facultyAnalytics?.classSummary.cohortSize ?? "—"} students in view</span>
       </section>
@@ -1959,7 +2004,7 @@ function App() {
         <div>
           <p className="eyebrow">LEARNING IMPACT · STUDENT VIEW</p>
           <h2>Observed learning activity</h2>
-          <p className="impact-subtitle">Recorded progress and current learning signals for a fictional demo student.</p>
+          <p className="impact-subtitle">The more we learn, the more we discover what we can achieve.</p>
         </div>
         <label className="student-select">
           <span>Demo student</span>
@@ -1973,10 +2018,6 @@ function App() {
             ))}
           </select>
         </label>
-      </section>
-
-      <section className="impact-honesty-note" role="note">
-        This summarizes observed prototype activity only. It does not prove learning improved, establish a causal effect, or validate an educational outcome.
       </section>
 
       {performanceLoading && <section className="panel loading-panel" aria-live="polite">Loading recorded learning activity…</section>}
