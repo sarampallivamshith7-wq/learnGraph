@@ -777,10 +777,7 @@ function App() {
         </div>
       </section>
 
-      <section className="status-card" aria-live="polite">
-        <span className="status-dot" />
-        <span>{status}</span>
-      </section>
+     
 
       <section className="section-heading">
         <div>
@@ -829,7 +826,6 @@ function App() {
                 <b>{concept.subject}</b>
                 <small>{concept.mastery}% mastery</small>
               </div>
-              <div className="bar"><span style={{ width: `${concept.mastery}%` }} /></div>
               <strong>{concept.mastery}%</strong>
             </div>
           ))}
@@ -886,7 +882,7 @@ function App() {
           <h2>{currentStudentPerformance?.student.name || demoStudents.find((student) => student.id === selectedStudentId)?.name || "Demo student"}: next moves</h2>
         </div>
         <label className="student-select">
-          <span>Demo student</span>
+          <span>Select Student</span>
           <select
             value={selectedStudentId}
             onChange={(event) => setSelectedStudentId(event.target.value)}
@@ -900,10 +896,7 @@ function App() {
         </label>
       </section>
 
-      <section className="estimate-note" role="note">
-        <strong>Personalized using local demo rules — no live AI or LLM is used.</strong>
-        <span>Gap concepts are ordered by lower mastery, then lower quiz average. Mapped prerequisites below 80% mastery (or without a score) are reviewed first; missing links are shown, not invented.</span>
-      </section>
+      
 
       <section className="panel adaptive-quiz">
         <div className="panel-heading">
@@ -1391,7 +1384,7 @@ function App() {
           <h2>{studentPerformance?.student.name || "Student"}: progress and evidence</h2>
         </div>
         <label className="student-select">
-          <span>Demo student</span>
+          <span>Select Student</span>
           <select
             value={selectedStudentId}
             onChange={(event) => setSelectedStudentId(event.target.value)}
@@ -1404,10 +1397,7 @@ function App() {
         </label>
       </section>
 
-      <section className="estimate-note" role="note">
-        <strong>Demo estimates — not validated predictions.</strong>
-        <span>Indicators use only the fictional sample records and the simple rules shown below.</span>
-      </section>
+      
 
       {performanceLoading && <section className="panel loading-panel" aria-live="polite">Loading demo performance…</section>}
       {!performanceLoading && performanceError && (
@@ -1483,9 +1473,6 @@ function App() {
                 {studentPerformance.weeklyProgress.map((week) => (
                   <div className="weekly-row" key={week.week}>
                     <span>{week.week}</span>
-                    <div className="bar" aria-label={`${week.progress}% progress`}>
-                      <span style={{ width: `${week.progress}%` }} />
-                    </div>
                     <strong>{week.progress}%</strong>
                     <small>{week.hours} hrs</small>
                   </div>
@@ -1501,7 +1488,6 @@ function App() {
                 {studentPerformance.conceptMastery.map((concept) => (
                   <div className="subject-row" key={concept.conceptId}>
                     <div><b>{concept.name}</b><small>{concept.status}</small></div>
-                    <div className="bar"><span style={{ width: `${concept.mastery}%` }} /></div>
                     <strong>{concept.mastery}%</strong>
                   </div>
                 ))}
@@ -1559,60 +1545,6 @@ function App() {
         <span className="term-label">Fictional demo cohort</span>
       </section>
 
-      <section className="estimate-note" role="note">
-        <strong>Prototype ML estimate — synthetic data and labels only; not validated for real-world decisions.</strong>
-        <span>Flags use the demo rules: mastery below {facultyAnalytics?.thresholds.mastery ?? 70}% or linked quiz average below {facultyAnalytics?.thresholds.quizAverage ?? 65}%. “Needs support” means {facultyAnalytics?.thresholds.supportConceptCount ?? 2}+ flagged concepts in the selected view.</span>
-        {facultyAnalytics?.model && (
-          <>
-            <span>
-              {facultyAnalytics.model.name}; {facultyAnalytics.model.syntheticRecordCount} synthetic records
-              ({facultyAnalytics.model.trainingRecordCount} train, {facultyAnalytics.model.heldOutRecordCount} held out).
-              {" "}{facultyAnalytics.model.heldOutSplit}.
-            </span>
-            <div className="model-metrics" aria-label="Synthetic held-out evaluation metrics">
-              {[
-                ["Accuracy", facultyAnalytics.model.evaluationMetrics.accuracy],
-                ["Precision", facultyAnalytics.model.evaluationMetrics.precision],
-                ["Recall", facultyAnalytics.model.evaluationMetrics.recall],
-                ["F1-score", facultyAnalytics.model.evaluationMetrics.f1],
-                ["ROC-AUC", facultyAnalytics.model.evaluationMetrics.rocAuc]
-              ].map(([label, value]) => (
-                <div key={label}>
-                  <small>{label}</small>
-                  <b>{value === null ? "N/A" : `${(value * 100).toFixed(1)}%`}</b>
-                </div>
-              ))}
-            </div>
-            {facultyAnalytics.model.rocAucNote && <span>{facultyAnalytics.model.rocAucNote}</span>}
-            <div className="confusion-matrix">
-              <b>Confusion matrix</b>
-              <span>{facultyAnalytics.model.confusionMatrix.orientation}</span>
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">Actual / predicted</th>
-                    {facultyAnalytics.model.confusionMatrix.labels.map((label) => <th scope="col" key={label}>{label}</th>)}
-                  </tr>
-                </thead>
-                <tbody>
-                  {facultyAnalytics.model.confusionMatrix.matrix.map((row, index) => (
-                    <tr key={facultyAnalytics.model.confusionMatrix.labels[index]}>
-                      <th scope="row">{facultyAnalytics.model.confusionMatrix.labels[index]}</th>
-                      {row.map((count, columnIndex) => <td key={columnIndex}>{count}</td>)}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <span>Positive target: {facultyAnalytics.model.positiveLabel}</span>
-            <span>Negative target: {facultyAnalytics.model.negativeLabel}</span>
-            <span>
-              Labels are generated from these same indicator cutoffs, so this evaluation does not validate real student outcomes.
-              {" "}No causal effect or probability calibration is established.
-            </span>
-          </>
-        )}
-      </section>
 
       {facultyAnalytics?.model && (
         <section className="panel model-explainability" aria-labelledby="model-explainability-title">
@@ -1707,7 +1639,6 @@ function App() {
                       <div><b>{concept.name}</b><small>{concept.subject} · {concept.assessedStudents} assessed</small></div>
                       <strong>{concept.averageMastery === null ? "—" : `${concept.averageMastery}%`}</strong>
                     </div>
-                    <div className="bar"><span style={{ width: `${concept.averageMastery ?? 0}%` }} /></div>
                     <p className="faculty-evidence">
                       {concept.flaggedStudents
                         ? `${concept.flaggedStudents} of ${facultyAnalytics.classSummary.cohortSize} students have a rule-based gap flag. ${concept.gapStudentNames.join(", ")}.`
@@ -1795,29 +1726,7 @@ function App() {
                   <div><small>Attendance</small><strong>{student.summary.attendance}%</strong></div>
                   <div><small>Latest weekly progress</small><strong>{student.weeklyProgress.at(-1)?.progress ?? "—"}%</strong></div>
                 </div>
-                <section className="estimate-note model-estimate" aria-label="Prototype synthetic model estimate">
-                  <strong>
-                    Prototype model estimate: {student.supportEstimate.prediction}
-                    {" "}({Math.round(student.supportEstimate.supportProbability * 100)}% estimated probability)
-                  </strong>
-                  <span>{student.supportEstimate.warning}</span>
-                  <h4>Key contributing indicators</h4>
-                  <p className="model-contribution-note">
-                    Top three by absolute contribution to log-odds (not probability percentage points), relative to the synthetic training mean:
-                  </p>
-                  <ul className="model-indicators">
-                    {student.supportEstimate.contributingIndicators.map((indicator) => (
-                      <li key={indicator.key}>
-                        {indicator.label}: {indicator.value}{indicator.unit === "%" ? "%" : " hours/week"}
-                        {" "} (training mean {indicator.trainingMean}{indicator.unit === "%" ? "%" : " hours/week"},
-                        {" "}{Math.abs(indicator.standardizedValue).toFixed(2)} SD
-                        {" "}{indicator.standardizedValue > 0 ? "above" : indicator.standardizedValue < 0 ? "below" : "at"} mean);
-                        {" "}{indicator.direction} ({indicator.logOddsContribution > 0 ? "+" : ""}
-                        {indicator.logOddsContribution.toFixed(3)} log-odds).
-                      </li>
-                    ))}
-                  </ul>
-                </section>
+                
                 <h4 className="faculty-evidence-title">Concept evidence in the selected view</h4>
                 {student.gaps.length ? (
                   <div className="gap-list">
@@ -1909,11 +1818,7 @@ function App() {
             ))}
           </section>
 
-          <section className="estimate-note impact-estimate-note" role="note">
-            <strong>Support estimates are synthetic model outputs, not validated student decisions.</strong>
-            <span>They summarize the existing logistic-regression estimates and evaluation in Faculty Dashboard. The model uses synthetic records and labels derived from the same demo cutoffs; estimates are not causal, calibrated, or validated for intervention decisions. Support counts are cohort-wide; subject and concept filters scope the rule-based mastery and gap summaries.</span>
-            <button className="text-button" onClick={() => setActive("Faculty Dashboard")}>Open faculty analytics and model evaluation <span>→</span></button>
-          </section>
+  
 
           <section className="two-column-grid impact-grid">
             <article className="panel">
@@ -1937,12 +1842,10 @@ function App() {
                         </div>
                         <div className="impact-bar-row">
                           <span>Mastery</span>
-                          <div className="bar"><span style={{ width: `${concept.averageMastery ?? 0}%` }} /></div>
                           <strong>{concept.averageMastery === null ? "Not assessed" : `${concept.averageMastery}%`}</strong>
                         </div>
                         <div className="impact-bar-row">
                           <span>Quiz average</span>
-                          <div className="bar quiz-bar"><span style={{ width: `${concept.averageQuiz ?? 0}%` }} /></div>
                           <strong>{concept.averageQuiz === null ? "No results" : `${concept.averageQuiz}%`}</strong>
                         </div>
                         <p className="panel-copy impact-evidence">
@@ -2007,7 +1910,7 @@ function App() {
           <p className="impact-subtitle">The more we learn, the more we discover what we can achieve.</p>
         </div>
         <label className="student-select">
-          <span>Demo student</span>
+          <span>Select Student</span>
           <select
             value={selectedStudentId}
             onChange={(event) => setSelectedStudentId(event.target.value)}
@@ -2056,9 +1959,6 @@ function App() {
                         <div><b>{concept.name}</b><small>{concept.subject} · {concept.status}</small></div>
                         <strong>{concept.mastery === null ? "Not assessed" : `${concept.mastery}%`}</strong>
                       </div>
-                      <div className="bar impact-mastery-bar">
-                        <span style={{ width: `${concept.mastery ?? 0}%` }} />
-                      </div>
                     </article>
                   ))}
                 </div>
@@ -2076,7 +1976,6 @@ function App() {
                   {currentStudentPerformance.quizzes.slice(-6).map((quiz) => (
                     <article className="impact-quiz" key={quiz.attemptId || `${quiz.title}-${quiz.date}`}>
                       <div><b>{quiz.title}</b><small>{quiz.date} · {quiz.conceptName}</small></div>
-                      <div className="bar"><span style={{ width: `${quiz.score}%` }} /></div>
                       <strong>{quiz.score}%</strong>
                     </article>
                   ))}
@@ -2108,7 +2007,6 @@ function App() {
                             <b>{concept?.name || "Concept"}</b>
                             <small>{new Date(attempt.submittedAt).toLocaleString()}</small>
                           </div>
-                          <div className="bar"><span style={{ width: `${attempt.updatedMastery}%` }} /></div>
                           <strong>{attempt.previousMastery}% → {attempt.updatedMastery}%</strong>
                           <span className={change >= 0 ? "impact-change-positive" : "impact-change-negative"}>
                             {change > 0 ? "+" : ""}{change} pts
