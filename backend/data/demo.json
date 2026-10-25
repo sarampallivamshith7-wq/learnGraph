@@ -1,0 +1,345 @@
+{
+  "student": {
+    "id": "student-001",
+    "name": "Alex Morgan",
+    "program": "Computer Science",
+    "year": 2,
+    "track": "Applied Data & Systems",
+    "advisor": "Dr. Lin Chen"
+  },
+  "dashboard": {
+    "date": "Monday, October 26",
+    "metrics": [
+      {
+        "label": "Overall progress",
+        "value": 78,
+        "suffix": "%",
+        "trend": "+6% this month",
+        "tone": "purple",
+        "icon": "↗"
+      },
+      {
+        "label": "Concepts mastered",
+        "value": 18,
+        "suffix": " / 24",
+        "trend": "Across 3 subjects",
+        "tone": "green",
+        "icon": "◎"
+      },
+      {
+        "label": "Focus areas",
+        "value": 3,
+        "suffix": "",
+        "trend": "Ready for attention",
+        "tone": "amber",
+        "icon": "✦"
+      },
+      {
+        "label": "Learning this week",
+        "value": 6.5,
+        "suffix": " hrs",
+        "trend": "On track with your goal",
+        "tone": "blue",
+        "icon": "◷"
+      }
+    ],
+    "highlights": [
+      "Quiz performance climbed after the algebra refresh module.",
+      "You are on pace for a strong finish in programming fundamentals.",
+      "Two concepts are flagged for reinforcement before the next assessment."
+    ],
+    "schedule": [
+      { "title": "Discrete Math workshop", "time": "Today · 2:00 PM", "type": "Workshop" },
+      { "title": "Python lab review", "time": "Wed · 10:15 AM", "type": "Lab" },
+      { "title": "Office hours with faculty", "time": "Fri · 11:00 AM", "type": "Support" }
+    ]
+  },
+  "learningPath": {
+    "summary": "Strong foundation. Focus on the next two concepts that unlock the strongest carryover into the next module.",
+    "recommended": [
+      {
+        "id": "limits",
+        "title": "Limits and continuity",
+        "status": "Next up",
+        "length": "20 min",
+        "reason": "Improves your comfort with function behavior and prepares you for derivatives."
+      },
+      {
+        "id": "recursion",
+        "title": "Recursion patterns",
+        "status": "Priority",
+        "length": "25 min",
+        "reason": "You have strong algorithmic basics and a small gap in recursive decomposition."
+      },
+      {
+        "id": "probability",
+        "title": "Probability basics",
+        "status": "Suggested",
+        "length": "15 min",
+        "reason": "This concept connects to your recent statistics module and supports applied reasoning."
+      }
+    ],
+    "milestones": [
+      { "title": "Functions & graphs", "state": "Complete", "note": "Foundation review complete" },
+      { "title": "Limits and continuity", "state": "Next", "note": "20 min practice set" },
+      { "title": "Intro to derivatives", "state": "Queued", "note": "Builds on current concept" }
+    ],
+    "resources": [
+      { "title": "Short concept recap", "type": "Video" },
+      { "title": "Practice worksheet", "type": "Exercise" },
+      { "title": "Peer discussion notes", "type": "Study guide" }
+    ]
+  },
+  "concepts": [
+    {
+      "id": "functions",
+      "name": "Functions & Graphs",
+      "subject": "Mathematics",
+      "mastery": 87,
+      "status": "Strong",
+      "description": "Translate between equations, graphs, and real-world scenarios.",
+      "prerequisites": ["Algebra review", "Coordinate plane"],
+      "materials": ["Graph exploration guide", "Worked examples"],
+      "connections": ["Limits and continuity", "Probability basics"]
+    },
+    {
+      "id": "recursion",
+      "name": "Recursion Patterns",
+      "subject": "Programming",
+      "mastery": 64,
+      "status": "Needs support",
+      "description": "Break a problem into smaller self-similar steps and trace recursive calls.",
+      "prerequisites": ["Function calls", "Control flow"],
+      "materials": ["Trace tree walkthrough", "Code challenge set"],
+      "connections": ["Data structures", "Algorithms"]
+    },
+    {
+      "id": "probability",
+      "name": "Probability Basics",
+      "subject": "Statistics",
+      "mastery": 78,
+      "status": "Stable",
+      "description": "Reason with chance, sample space, and expected outcomes.",
+      "prerequisites": ["Fractions", "Percent reasoning"],
+      "materials": ["Probability deck", "Scenario refresher"],
+      "connections": ["Functions & graphs", "Data modeling"]
+    },
+    {
+      "id": "arrays",
+      "name": "Arrays & Lists",
+      "subject": "Programming",
+      "mastery": 82,
+      "status": "Strong",
+      "description": "Manipulate ordered collections and choose the right data structure.",
+      "prerequisites": ["Variable scope", "Iteration"],
+      "materials": ["Array patterns", "Lab notebook"],
+      "connections": ["Recursion patterns", "Sorting logic"]
+    },
+    {
+      "id": "derivatives",
+      "name": "Intro to Derivatives",
+      "subject": "Mathematics",
+      "mastery": 71,
+      "status": "Developing",
+      "description": "Interpret instantaneous change and connect slopes to real-world motion.",
+      "prerequisites": ["Limits and continuity", "Rate of change"],
+      "prerequisiteIds": ["functions"],
+      "materials": ["Slope lab", "Worked derivation set"],
+      "connections": ["Functions & graphs", "Modeling with data"]
+    }
+  ],
+  "performance": {
+    "summary": [
+      { "label": "Quiz average", "value": 86, "suffix": "%", "change": "+9 pts" },
+      { "label": "Assignment completion", "value": 92, "suffix": "%", "change": "+4 pts" },
+      { "label": "Attendance", "value": 95, "suffix": "%", "change": "Above target" },
+      { "label": "Time on task", "value": 6.5, "suffix": " hrs", "change": "+1.2 hrs" }
+    ],
+    "subjects": [
+      { "name": "Programming", "score": 88, "trend": "+7%" },
+      { "name": "Data Structures", "score": 72, "trend": "+3%" },
+      { "name": "Discrete Math", "score": 81, "trend": "+5%" },
+      { "name": "Statistics", "score": 76, "trend": "+2%" }
+    ],
+    "assignments": [
+      { "title": "Data structures quiz", "score": 92, "status": "Strong" },
+      { "title": "Probability worksheet", "score": 76, "status": "Review" },
+      { "title": "Programming lab 3", "score": 89, "status": "Strong" }
+    ],
+    "alerts": [
+      "Recursion exercises are below the class median.",
+      "Probability explanations need more structured practice before the next check-in.",
+      "Attendance is solid; no immediate concern is present."
+    ]
+  },
+  "demoStudents": [
+    {
+      "id": "student-001",
+      "name": "Alex Morgan",
+      "program": "Computer Science",
+      "year": 2,
+      "quizzes": [
+        { "title": "Functions checkpoint", "date": "Oct 2", "conceptId": "functions", "score": 95 },
+        { "title": "Arrays quiz", "date": "Oct 5", "conceptId": "arrays", "score": 95 },
+        { "title": "Data structures check", "date": "Oct 9", "conceptId": "arrays", "score": 95 },
+        { "title": "Probability quiz", "date": "Oct 12", "conceptId": "probability", "score": 95 },
+        { "title": "Discrete math review", "date": "Oct 16", "conceptId": "functions", "score": 95 },
+        { "title": "Programming concepts", "date": "Oct 19", "conceptId": "recursion", "score": 59 },
+        { "title": "Recursion trace quiz", "date": "Oct 23", "conceptId": "recursion", "score": 59 },
+        { "title": "Statistics checkpoint", "date": "Oct 24", "conceptId": "probability", "score": 95 }
+      ],
+      "assignments": [
+        { "title": "Data structures quiz", "date": "Oct 24", "conceptId": "arrays", "score": 92, "status": "Submitted" },
+        { "title": "Probability worksheet", "date": "Oct 21", "conceptId": "probability", "score": 76, "status": "Submitted" },
+        { "title": "Programming lab 3", "date": "Oct 18", "conceptId": "recursion", "score": 89, "status": "Submitted" }
+      ],
+      "assignmentCompletion": { "completed": 11, "total": 12 },
+      "attendance": { "attended": 19, "total": 20 },
+      "weeklyProgress": [
+        { "week": "Week 1", "progress": 58, "hours": 4.8 },
+        { "week": "Week 2", "progress": 64, "hours": 5.2 },
+        { "week": "Week 3", "progress": 71, "hours": 5.3 },
+        { "week": "Week 4", "progress": 78, "hours": 6.5 }
+      ],
+      "conceptMastery": [
+        { "conceptId": "functions", "mastery": 87 },
+        { "conceptId": "recursion", "mastery": 64 },
+        { "conceptId": "probability", "mastery": 78 },
+        { "conceptId": "arrays", "mastery": 82 },
+        { "conceptId": "derivatives", "mastery": 71 }
+      ]
+    },
+    {
+      "id": "student-002",
+      "name": "Priya Shah",
+      "program": "Computer Science",
+      "year": 2,
+      "quizzes": [
+        { "title": "Functions checkpoint", "date": "Oct 2", "conceptId": "functions", "score": 78 },
+        { "title": "Arrays quiz", "date": "Oct 5", "conceptId": "arrays", "score": 75 },
+        { "title": "Data structures check", "date": "Oct 9", "conceptId": "arrays", "score": 72 },
+        { "title": "Probability quiz", "date": "Oct 12", "conceptId": "probability", "score": 58 },
+        { "title": "Discrete math review", "date": "Oct 16", "conceptId": "functions", "score": 74 },
+        { "title": "Programming concepts", "date": "Oct 19", "conceptId": "recursion", "score": 63 },
+        { "title": "Recursion trace quiz", "date": "Oct 23", "conceptId": "recursion", "score": 66 },
+        { "title": "Statistics checkpoint", "date": "Oct 24", "conceptId": "probability", "score": 61 }
+      ],
+      "assignments": [
+        { "title": "Data structures quiz", "date": "Oct 24", "conceptId": "arrays", "score": 70, "status": "Submitted" },
+        { "title": "Probability worksheet", "date": "Oct 21", "conceptId": "probability", "score": 62, "status": "Review" },
+        { "title": "Programming lab 3", "date": "Oct 18", "conceptId": "recursion", "score": 68, "status": "Review" }
+      ],
+      "assignmentCompletion": { "completed": 9, "total": 12 },
+      "attendance": { "attended": 17, "total": 20 },
+      "weeklyProgress": [
+        { "week": "Week 1", "progress": 48, "hours": 3.1 },
+        { "week": "Week 2", "progress": 54, "hours": 3.7 },
+        { "week": "Week 3", "progress": 61, "hours": 3.4 },
+        { "week": "Week 4", "progress": 68, "hours": 3.8 }
+      ],
+      "conceptMastery": [
+        { "conceptId": "functions", "mastery": 74 },
+        { "conceptId": "recursion", "mastery": 66 },
+        { "conceptId": "probability", "mastery": 59 },
+        { "conceptId": "arrays", "mastery": 72 },
+        { "conceptId": "derivatives", "mastery": 68 }
+      ]
+    },
+    {
+      "id": "student-003",
+      "name": "Lucas Green",
+      "program": "Computer Science",
+      "year": 2,
+      "quizzes": [
+        { "title": "Functions checkpoint", "date": "Oct 2", "conceptId": "functions", "score": 69 },
+        { "title": "Arrays quiz", "date": "Oct 5", "conceptId": "arrays", "score": 62 },
+        { "title": "Data structures check", "date": "Oct 9", "conceptId": "arrays", "score": 59 },
+        { "title": "Probability quiz", "date": "Oct 12", "conceptId": "probability", "score": 55 },
+        { "title": "Discrete math review", "date": "Oct 16", "conceptId": "functions", "score": 65 },
+        { "title": "Programming concepts", "date": "Oct 19", "conceptId": "recursion", "score": 52 },
+        { "title": "Recursion trace quiz", "date": "Oct 23", "conceptId": "recursion", "score": 56 },
+        { "title": "Statistics checkpoint", "date": "Oct 24", "conceptId": "probability", "score": 58 }
+      ],
+      "assignments": [
+        { "title": "Data structures quiz", "date": "Oct 24", "conceptId": "arrays", "score": 58, "status": "Review" },
+        { "title": "Probability worksheet", "date": "Oct 21", "conceptId": "probability", "score": 55, "status": "Review" },
+        { "title": "Programming lab 3", "date": "Oct 18", "conceptId": "recursion", "score": 61, "status": "Review" }
+      ],
+      "assignmentCompletion": { "completed": 7, "total": 12 },
+      "attendance": { "attended": 15, "total": 20 },
+      "weeklyProgress": [
+        { "week": "Week 1", "progress": 42, "hours": 2.4 },
+        { "week": "Week 2", "progress": 46, "hours": 2.6 },
+        { "week": "Week 3", "progress": 54, "hours": 2.9 },
+        { "week": "Week 4", "progress": 61, "hours": 3.0 }
+      ],
+      "conceptMastery": [
+        { "conceptId": "functions", "mastery": 65 },
+        { "conceptId": "recursion", "mastery": 54 },
+        { "conceptId": "probability", "mastery": 57 },
+        { "conceptId": "arrays", "mastery": 61 },
+        { "conceptId": "derivatives", "mastery": 68 }
+      ]
+    },
+    {
+      "id": "student-004",
+      "name": "Maya Ortiz",
+      "program": "Computer Science",
+      "year": 2,
+      "quizzes": [
+        { "title": "Functions checkpoint", "date": "Oct 2", "conceptId": "functions", "score": 92 },
+        { "title": "Arrays quiz", "date": "Oct 5", "conceptId": "arrays", "score": 94 },
+        { "title": "Data structures check", "date": "Oct 9", "conceptId": "arrays", "score": 88 },
+        { "title": "Probability quiz", "date": "Oct 12", "conceptId": "probability", "score": 84 },
+        { "title": "Discrete math review", "date": "Oct 16", "conceptId": "functions", "score": 90 },
+        { "title": "Programming concepts", "date": "Oct 19", "conceptId": "recursion", "score": 86 },
+        { "title": "Recursion trace quiz", "date": "Oct 23", "conceptId": "recursion", "score": 90 },
+        { "title": "Statistics checkpoint", "date": "Oct 24", "conceptId": "probability", "score": 88 }
+      ],
+      "assignments": [
+        { "title": "Data structures quiz", "date": "Oct 24", "conceptId": "arrays", "score": 94, "status": "Submitted" },
+        { "title": "Probability worksheet", "date": "Oct 21", "conceptId": "probability", "score": 86, "status": "Submitted" },
+        { "title": "Programming lab 3", "date": "Oct 18", "conceptId": "recursion", "score": 92, "status": "Submitted" }
+      ],
+      "assignmentCompletion": { "completed": 12, "total": 12 },
+      "attendance": { "attended": 20, "total": 20 },
+      "weeklyProgress": [
+        { "week": "Week 1", "progress": 62, "hours": 5.1 },
+        { "week": "Week 2", "progress": 69, "hours": 5.8 },
+        { "week": "Week 3", "progress": 75, "hours": 6.1 },
+        { "week": "Week 4", "progress": 84, "hours": 6.7 }
+      ],
+      "conceptMastery": [
+        { "conceptId": "functions", "mastery": 91 },
+        { "conceptId": "recursion", "mastery": 84 },
+        { "conceptId": "probability", "mastery": 79 },
+        { "conceptId": "arrays", "mastery": 89 },
+        { "conceptId": "derivatives", "mastery": 68 }
+      ]
+    }
+  ],
+  "faculty": {
+    "classSummary": {
+      "cohortSize": 28,
+      "onTrack": 19,
+      "needingSupport": 5,
+      "avgMastery": 79
+    },
+    "students": [
+      { "name": "Alex Morgan", "risk": "Low", "mastery": 79, "support": "Monitor recursion review" },
+      { "name": "Priya Shah", "risk": "Medium", "mastery": 68, "support": "Schedule check-in" },
+      { "name": "Lucas Green", "risk": "High", "mastery": 61, "support": "Intervention suggested" },
+      { "name": "Maya Ortiz", "risk": "Low", "mastery": 82, "support": "Advance to next module" }
+    ],
+    "alerts": [
+      "Probability topics remain the largest source of variance in section A.",
+      "Three students show declining assignment completion after week 4.",
+      "Recommended intervention: targeted practice bundles for recursion and graph reasoning."
+    ],
+    "interventions": [
+      { "title": "Small-group recursion lab", "detail": "2 sessions · 12 students targeted" },
+      { "title": "Weekly office hour follow-up", "detail": "Faculty and peer mentoring" },
+      { "title": "Adaptive review path", "detail": "Personalized practice for at-risk concepts" }
+    ]
+  }
+}

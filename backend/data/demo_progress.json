@@ -1,0 +1,226 @@
+{
+  "students": {
+    "student-003": {
+      "mastery": {
+        "recursion": 70,
+        "probability": 46
+      },
+      "attempts": [
+        {
+          "id": "da7a703d-8849-4e22-9077-5526d5e8d0cc",
+          "questionId": "recursion-base-case",
+          "conceptId": "recursion",
+          "answerIndex": 0,
+          "correct": true,
+          "score": 100,
+          "previousMastery": 54,
+          "updatedMastery": 63,
+          "submittedAt": "2026-10-25T09:45:50.798597+00:00"
+        },
+        {
+          "id": "41960609-66cf-4d61-8153-866d7fc66d2c",
+          "questionId": "recursion-base-case",
+          "conceptId": "recursion",
+          "answerIndex": 0,
+          "correct": true,
+          "score": 100,
+          "previousMastery": 63,
+          "updatedMastery": 70,
+          "submittedAt": "2026-10-25T09:46:36.287796+00:00"
+        },
+        {
+          "id": "472f0a5c-9c05-477d-9706-6c60848e8e76",
+          "questionId": "probability-complement",
+          "conceptId": "probability",
+          "answerIndex": 0,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 57,
+          "updatedMastery": 46,
+          "submittedAt": "2026-10-25T09:46:49.123660+00:00"
+        }
+      ]
+    },
+    "student-001": {
+      "mastery": {
+        "functions": 72,
+        "recursion": 51,
+        "derivatives": 30
+      },
+      "attempts": [
+        {
+          "id": "885a74d9-c72d-44dd-997e-671203342350",
+          "questionId": "functions-input-output",
+          "conceptId": "functions",
+          "answerIndex": 0,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 87,
+          "updatedMastery": 70,
+          "submittedAt": "2026-10-25T09:49:35.932564+00:00"
+        },
+        {
+          "id": "5a112df7-bfdd-44ed-a83c-4563c3d3d3fe",
+          "questionId": "functions-input-output",
+          "conceptId": "functions",
+          "answerIndex": 2,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 70,
+          "updatedMastery": 56,
+          "submittedAt": "2026-10-25T09:49:58.920949+00:00"
+        },
+        {
+          "id": "e0b524a6-59cb-4437-93ff-735c5f15e406",
+          "questionId": "functions-input-output",
+          "conceptId": "functions",
+          "answerIndex": 1,
+          "correct": true,
+          "score": 100,
+          "previousMastery": 56,
+          "updatedMastery": 65,
+          "submittedAt": "2026-10-25T09:50:05.383143+00:00"
+        },
+        {
+          "id": "2f5203bb-739f-4951-af18-48a6eeadedd9",
+          "questionId": "functions-input-output",
+          "conceptId": "functions",
+          "answerIndex": 1,
+          "correct": true,
+          "score": 100,
+          "previousMastery": 65,
+          "updatedMastery": 72,
+          "submittedAt": "2026-10-25T09:51:45.110562+00:00"
+        },
+        {
+          "id": "b39e93f5-f9f6-417e-9e6b-359fba59f981",
+          "questionId": "recursion-base-case",
+          "conceptId": "recursion",
+          "answerIndex": 2,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 64,
+          "updatedMastery": 51,
+          "submittedAt": "2026-10-25T09:52:16.171329+00:00"
+        },
+        {
+          "id": "fcd48e83-f402-44aa-b3d5-b56ee508bb20",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 0,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 71,
+          "updatedMastery": 57,
+          "submittedAt": "2026-10-25T10:53:41.200745+00:00"
+        },
+        {
+          "id": "dc1e294f-5d72-4c9d-87a9-24ad776e8dd7",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 3,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 57,
+          "updatedMastery": 46,
+          "submittedAt": "2026-10-25T10:53:47.308412+00:00"
+        },
+        {
+          "id": "f039ca5a-e1af-4c8d-b234-c2f5970b21b3",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 3,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 46,
+          "updatedMastery": 37,
+          "submittedAt": "2026-10-25T10:53:49.401800+00:00"
+        },
+        {
+          "id": "a9389992-49b5-4269-9183-79559ded358a",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 3,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 37,
+          "updatedMastery": 30,
+          "submittedAt": "2026-10-25T10:53:51.809739+00:00"
+        },
+        {
+          "id": "26a55031-6c85-4637-9f06-d3c128e11940",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 0,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 30,
+          "updatedMastery": 24,
+          "submittedAt": "2026-10-25T10:53:55.058517+00:00"
+        },
+        {
+          "id": "e57c48df-4de7-4e3c-8e69-259a77279cb4",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 0,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 24,
+          "updatedMastery": 19,
+          "submittedAt": "2026-10-25T10:53:57.893716+00:00"
+        },
+        {
+          "id": "c5e2da36-cf55-409f-b1f7-a790e4baeb9d",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 0,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 19,
+          "updatedMastery": 15,
+          "submittedAt": "2026-10-25T10:54:01.376108+00:00"
+        },
+        {
+          "id": "4e2dcf53-fd2c-4eaa-b43f-cfbd3756a29d",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 0,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 15,
+          "updatedMastery": 12,
+          "submittedAt": "2026-10-25T10:54:04.627910+00:00"
+        },
+        {
+          "id": "ab875c5e-878d-4b3b-bab3-b4cd5aa015ad",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 1,
+          "correct": true,
+          "score": 100,
+          "previousMastery": 12,
+          "updatedMastery": 30,
+          "submittedAt": "2026-10-25T10:54:12.052194+00:00"
+        }
+      ]
+    },
+    "student-002": {
+      "mastery": {
+        "derivatives": 54
+      },
+      "attempts": [
+        {
+          "id": "b5cdb245-236a-4119-bd36-7eb3684ba697",
+          "questionId": "derivatives-rate",
+          "conceptId": "derivatives",
+          "answerIndex": 0,
+          "correct": false,
+          "score": 0,
+          "previousMastery": 68,
+          "updatedMastery": 54,
+          "submittedAt": "2026-10-25T09:53:16.827012+00:00"
+        }
+      ]
+    }
+  }
+}
